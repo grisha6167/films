@@ -17,6 +17,22 @@ async function getMovies(url) {
 }
 
 function showMovies(data) {
-    const moviesEle = document.querySelector(".movies")
-    moviesEle.innerHTML = ""
+    const moviesEl = document.querySelector(".movies")
+    moviesEl.innerHTML = ""
+
+    data.films.forEach((movie) => {
+        const movieEl = document.createElement("div")
+        movieEl.classList.add("movie")
+        movieEl.innerHTML = `
+        <div class="movie__cover-inner">
+            <img src="${movie.posterUrlPreview}" alt="" class="movie__cover">
+            <div class="movie__cover--darkened"></div>
+        </div>
+        <div class="movie__info">
+            <div class="movie__title">Mortal Combat</div>
+            <div class="movie__category"> Боевик</div>
+            <div class="movie_average movie_average--green">9
+        </div>`;
+        moviesEl.appendChild(movieEl);
+    })
 }
