@@ -29,8 +29,8 @@ function showMovies(data) {
             <div class="movie__cover--darkened"></div>
         </div>
         <div class="movie__info">
-            <div class="movie__title">Mortal Combat</div>
-            <div class="movie__category"> Боевик</div>
+            <div class="movie__title">${movie.nameRu}</div>
+            <div class="movie__category">${}</div>
             <div class="movie_average movie_average--green">9
         </div>`;
         moviesEl.appendChild(movieEl);
