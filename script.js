@@ -3,6 +3,8 @@ const API_URL_POPULAR = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword="
 const form = document.querySelector("form")
 const input = document.querySelector("input")
+const modal = document.querySelector(".modal")
+const API_URL_MODIE_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.1/films"
 
 
 getMovies(API_URL_POPULAR)
@@ -49,6 +51,7 @@ function showMovies(data) {
                 `<div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>`
             }
 </div>`;
+
         moviesEl.appendChild(movieEl);
     })
 }
@@ -63,17 +66,7 @@ form.addEventListener("submit", (e)=> {
 });
 
 
+async function openModal(id){
 
-
-
-
-
-
-
-const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-const squares = nums.map(function (num) {
-  return num * num
-})
-console.log(nums)
-console.log(squares)
+    
+}
