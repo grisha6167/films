@@ -4,7 +4,7 @@ const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/searc
 const form = document.querySelector("form")
 const input = document.querySelector("input")
 const modal = document.querySelector(".modal")
-const API_URL_MODIE_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.1/films"
+const API_URL_MOVIE_DETAILS = "https://kinopoiskapiunofficial.tech/api/v2.1/films"
 
 
 getMovies(API_URL_POPULAR)
@@ -20,11 +20,10 @@ async function getMovies(url) {
     showMovies(respData)
     console.log(respData)
 }
-
-function getClassByRate(vote){
-    if(vote >= 7){return "green"}
-    else if(vote >= 5){return "orange"}
-    else{return "red"}
+function getClassByRate(vote) {
+    if (vote >= 7) { return "green" }
+    else if (vote >= 5) { return "orange" }
+    else { return "red" }
 }
 
 
@@ -44,29 +43,38 @@ function showMovies(data) {
         <div class="movie__info">
             <div class="movie__title">${movie.nameRu}</div>
             <div class="movie__category">${movie.genres.map(
-                (genre) => `${genre.genre}`
-            )}</div>
-            ${
-                movie.rating &&
-                `<div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>`
+            (genre) => `${genre.genre}`
+        )}</div>
+            ${movie.rating &&
+            `<div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>`
             }
 </div>`;
 
         moviesEl.appendChild(movieEl);
+        movieEl.addEventListener('click', ()=>{
+            openModal(movie.filmId)
+        })
     })
-}
+}   
 
-form.addEventListener("submit", (e)=> {
+form.addEventListener("submit", (e) => {
     e.preventDefault()
     const apiSearchUrl = `${API_URL_SEARCH}${input.value}`
-    if(input.value){
+    if (input.value) {
         getMovies(apiSearchUrl)
         input.value = ""
     }
 });
 
 
-async function openModal(id){
-
-    
+async function openModal(id) {
+    console.log("id", id)
+    const resp = await fetch(API_URL_MOVIE_DETAILS + id, {
+        headers: {
+            'X-API-KEY': API_KEY,
+            'Content-Type': 'application/json'
+        }
+    })
+    const respData = await resp.json()
+    console.log(respData)
 }
