@@ -45,7 +45,7 @@ function showMovies(data) {
             <div class="movie__category">${movie.genres.map(
             (genre) => `${genre.genre}`
         )}</div>
-            ${movie.rating &&
+            ${movie.rating && !String(movie.rating).endsWith("%") &&
             `<div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>`
             }
 </div>`;
